@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>OLPC Campus Navigator</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="logo">Our Lady of the Pillar College</div>
+  <div class="search-box">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" id="searchInput" placeholder="Search room or area..." autocomplete="off">
+    <div class="sdrop" id="sdrop"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast hide" id="toast"><span id="toastMsg">Tap any room to begin</span></div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- CAMPUS SCROLL -->
+  <div class="campus-scroll">
+    <div class="campus" id="campus">
+      <div class="campus-title">OUR LADY OF THE PILLAR COLLEGE &nbsp;·&nbsp; SAN MANUEL, ISABELA</div>
+
+      <!-- roads -->
+      <div class="road" style="left:0;top:0;width:12px;height:100%;"></div>
+      <div class="road" style="left:0;top:0;width:100%;height:12px;"></div>
+      <div class="road" style="left:12px;top:180px;width:160px;height:10px;border-radius:0 0 3px 3px;"></div>
+
+      <!-- trees -->
+      <div class="tree" style="width:78px;height:66px;left:390px;top:300px;"></div>
+      <div class="tree" style="width:60px;height:52px;left:500px;top:330px;"></div>
+      <div class="tree" style="width:92px;height:76px;left:580px;top:280px;"></div>
+      <div class="tree" style="width:68px;height:58px;left:710px;top:305px;"></div>
+      <div class="tree" style="width:54px;height:46px;left:830px;top:335px;"></div>
+      <div class="tree" style="width:62px;height:54px;left:460px;top:475px;"></div>
+      <div class="tree" style="width:84px;height:70px;left:660px;top:450px;"></div>
+      <div class="tree" style="width:46px;height:40px;left:340px;top:410px;"></div>
+      <div class="tree" style="width:52px;height:44px;left:760px;top:480px;"></div>
+      <div class="tree" style="width:38px;height:32px;left:900px;top:410px;"></div>
+
+      <!-- cross-building path overlay -->
+      <svg class="xsvg" id="xsvg"></svg>
+
+      <!-- buildings injected by JS -->
+      <div id="bslots"></div>
+
+      <!-- north -->
+      <div class="north"><span class="north-arrow">&#8593;</span><span class="north-lbl">N</span></div>
+      <!-- scale -->
+      <div class="scalebar"><div class="scalebar-line"></div><div class="scalebar-lbl">approx. scale</div></div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sb-top">
+      <div class="sb-title">Navigation</div>
+      <div class="sb-hint">1&#46; Tap any room &rarr; set your location<br>2&#46; Tap a destination &rarr; get route</div>
+    </div>
+    <div class="sb-body">
+      <div class="sb-empty" id="sbEmpty">
+        <div class="ico">&#128506;</div>
+        Tap any room on the map to start navigating
+      </div>
+      <div class="route" id="routePanel">
+        <div class="rt-pt">
+          <div class="rt-dot" style="background:#7c3aed;"></div>
+          <div><div class="rt-name" id="rFrom">-</div><div class="rt-sub" id="rFromSub"></div></div>
+        </div>
+        <div class="rt-vline"></div>
+        <div class="rt-pt">
+          <div class="rt-dot" style="background:#e91e8c;"></div>
+          <div><div class="rt-name" id="rTo">-</div><div class="rt-sub" id="rToSub"></div></div>
+        </div>
+        <div class="pmr-badge">&#9851; PMR &nbsp;·&nbsp; Staircase Access</div>
+        <div class="steps" id="steps"></div>
+        <button class="clear-btn" onclick="clearRoute()">&#10005; &nbsp;Clear Route</button>
+      </div>
+    </div>
+    <div class="sb-legend">
+      <div class="sb-title">Legend</div>
+      <div class="leg-row"><div class="leg-dot" style="background:#eef0fb;border-color:#b8c0e0;"></div> Classroom</div>
+      <div class="leg-row"><div class="leg-dot" style="background:#edf7ee;border-color:#a8d4b0;"></div> Lab / Library</div>
+      <div class="leg-row"><div class="leg-dot" style="background:#f5eeff;border-color:#c4a8e8;"></div> Office / Special</div>
+      <div class="leg-row"><div class="leg-dot" style="background:#f0ecff;border-color:#b8a8dc;"></div> Staircase</div>
+      <div class="leg-row"><span style="color:#7c3aed;font-size:12px;">&#9679;</span>&nbsp; You Are Here &nbsp; <span style="color:#e91e8c;font-size:12px;">&#9733;</span>&nbsp; Destination</div>
+      <div class="leg-row" style="margin-top:4px;"><div style="width:24px;height:3px;background:#e91e8c;border-radius:2px;"></div>&nbsp; Route Path</div>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
